@@ -172,7 +172,7 @@
 - <span class="math notranslate nohighlight">\((a+b)^*\)</span>: This part allows any combination of ‘a’s and ‘b’s to follow, including none.</p>
 <p><strong>Sample Strings:</strong> <span class="math notranslate nohighlight">\(a\)</span>, <span class="math notranslate nohighlight">\(aa\)</span>, <span class="math notranslate nohighlight">\(ab\)</span>, <span class="math notranslate nohighlight">\(aab\)</span>, <span class="math notranslate nohighlight">\(aba\)</span></p>
 <p><strong>Visual Diagram (NFA):</strong></p>
-<div class="figure" style="text-align: center"><p><img  src="_images/tikz-985a8b944c3673afdf9ddf76b45e92846acfe478.png" alt="Figure made with TikZ" /></p>
+<div class="figure" style="text-align: center"><p><img  src="./_images/tikz-985a8b944c3673afdf9ddf76b45e92846acfe478.png" alt="Figure made with TikZ" /></p>
 </div><p><em>Caption: This NFA accepts strings starting with ‘a’. After the mandatory ‘a’ transition to accepting state q1, any combination of characters is allowed.</em></p>
 </div>
 <div class="admonition-example admonition">
@@ -184,7 +184,7 @@
 - <span class="math notranslate nohighlight">\(a\)</span>: This part requires the string to end with ‘a’.</p>
 <p><strong>Sample Strings:</strong> <span class="math notranslate nohighlight">\(aa\)</span>, <span class="math notranslate nohighlight">\(aba\)</span>, <span class="math notranslate nohighlight">\(abba\)</span>, <span class="math notranslate nohighlight">\(abbba\)</span></p>
 <p><strong>Visual Diagram (NFA):</strong></p>
-<div class="figure" style="text-align: center"><p><img  src="_images/tikz-865971939622a3aa10ad274e4f3162542e1f4e6d.png" alt="Figure made with TikZ" /></p>
+<div class="figure" style="text-align: center"><p><img  src="./_images/tikz-865971939622a3aa10ad274e4f3162542e1f4e6d.png" alt="Figure made with TikZ" /></p>
 </div><p><em>Caption: This NFA starts with ‘a’ to reach q1, allows any number of ‘b’s to loop in q1, then requires ‘a’ to reach the final accepting state q2.</em></p>
 </div>
 <div class="admonition-example admonition">
@@ -196,7 +196,7 @@
 - <span class="math notranslate nohighlight">\(b\)</span>: This part represents strings containing just ‘b’.</p>
 <p><strong>Sample Strings:</strong> <span class="math notranslate nohighlight">\(a\)</span>, <span class="math notranslate nohighlight">\(b\)</span></p>
 <p><strong>Visual Diagram (NFA):</strong></p>
-<div class="figure" style="text-align: center"><p><img  src="_images/tikz-aecb9215940714d3bb4d3d470c8434c4bb2a838d.png" alt="Figure made with TikZ" /></p>
+<div class="figure" style="text-align: center"><p><img  src="./_images/tikz-aecb9215940714d3bb4d3d470c8434c4bb2a838d.png" alt="Figure made with TikZ" /></p>
 </div><p><em>Caption: This NFA provides a choice between ‘a’ and ‘b’. From initial state q0, either transition leads to an accepting state.</em></p>
 </div>
 <div class="admonition-example admonition">
@@ -220,7 +220,7 @@
 - <span class="math notranslate nohighlight">\(()^*\)</span>: This allows any number of such pairs, ensuring even total length.</p>
 <p><strong>Sample Strings:</strong> <span class="math notranslate nohighlight">\(\epsilon\)</span>, <span class="math notranslate nohighlight">\(aa\)</span>, <span class="math notranslate nohighlight">\(ab\)</span>, <span class="math notranslate nohighlight">\(ba\)</span>, <span class="math notranslate nohighlight">\(bb\)</span>, <span class="math notranslate nohighlight">\(abab\)</span></p>
 <p><strong>Visual Diagram (NFA):</strong></p>
-<div class="figure" style="text-align: center"><p><img  src="_images/tikz-5cf5a7e1df69355107dcdcf6371f2b0ed4572061.png" alt="Figure made with TikZ" /></p>
+<div class="figure" style="text-align: center"><p><img  src="./_images/tikz-5cf5a7e1df69355107dcdcf6371f2b0ed4572061.png" alt="Figure made with TikZ" /></p>
 </div><p><em>Caption: This NFA alternates between q0 (even position) and q1 (odd position). Only q0 is accepting, ensuring even-length strings are accepted.</em></p>
 </div>
 <div class="admonition-example admonition">
@@ -232,7 +232,7 @@
 - <span class="math notranslate nohighlight">\((a+b)^*\)</span>: This part allows any characters after the required substring.</p>
 <p><strong>Sample Strings:</strong> <span class="math notranslate nohighlight">\(ab\)</span>, <span class="math notranslate nohighlight">\(aab\)</span>, <span class="math notranslate nohighlight">\(abb\)</span>, <span class="math notranslate nohighlight">\(bab\)</span>, <span class="math notranslate nohighlight">\(abab\)</span></p>
 <p><strong>Visual Diagram (NFA):</strong></p>
-<div class="figure" style="text-align: center"><p><img  src="_images/tikz-3397b15733f905a86fb0430d2bcd7beed1e469bd.png" alt="Figure made with TikZ" /></p>
+<div class="figure" style="text-align: center"><p><img  src="./_images/tikz-3397b15733f905a86fb0430d2bcd7beed1e469bd.png" alt="Figure made with TikZ" /></p>
 </div><p><em>Caption: This NFA searches for ‘ab’ pattern. It stays in q0 with ‘b’, moves to q1 on ‘a’, then to accepting q2 on ‘b’. Once ‘ab’ is found, it remains accepting.</em></p>
 </div>
 </section>
