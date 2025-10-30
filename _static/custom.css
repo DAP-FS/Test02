@@ -1,0 +1,514 @@
+/* _static/custom.css - Mobile-First Design with Collapsible Q&A */
+
+/* =================================================================
+   MOBILE-FIRST RESPONSIVE DESIGN
+   ================================================================= */
+
+/* Base mobile styles (applies to all screen sizes) */
+.wy-nav-content {
+    max-width: 100% !important;
+    padding: 1rem !important;
+}
+
+/* Tablet and larger screens */
+@media screen and (min-width: 768px) {
+    .wy-nav-content {
+        max-width: 90% !important;
+        padding: 1.618em 2em !important;
+    }
+}
+
+/* Desktop screens */
+@media screen and (min-width: 1024px) {
+    .wy-nav-content {
+        max-width: 1200px !important;
+    }
+}
+
+/* =================================================================
+   COLLAPSIBLE/DROPDOWN FUNCTIONALITY
+   ================================================================= */
+
+/* Collapsible container */
+.collapsible {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+/* Hide the checkbox */
+.collapsible input[type="checkbox"] {
+    display: none;
+}
+
+/* Clickable header/toggle button */
+.collapsible-header {
+    cursor: pointer;
+    padding: 1rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 8px;
+    margin-bottom: 0;
+    position: relative;
+    transition: all 0.3s ease;
+    user-select: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    font-size: 1.1em;
+}
+
+.collapsible-header:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* Arrow indicator */
+.collapsible-header::after {
+    content: "▼";
+    font-size: 1.2em;
+    transition: transform 0.3s ease;
+    margin-left: 1rem;
+}
+
+/* Rotate arrow when expanded */
+.collapsible input[type="checkbox"]:checked + .collapsible-header::after {
+    transform: rotate(180deg);
+}
+
+/* Collapsible content */
+.collapsible-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+    background-color: #f8f9fa;
+    border: 2px solid #e9ecef;
+    border-top: none;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+/* Expand content when checkbox is checked */
+.collapsible input[type="checkbox"]:checked + .collapsible-header + .collapsible-content {
+    max-height: 2000px;
+    padding: 1.5rem;
+    border-top: 1px solid #dee2e6;
+}
+
+/* =================================================================
+   MOBILE-OPTIMIZED ADMONITION BOXES
+   ================================================================= */
+
+div.admonition {
+    border-radius: 8px;
+    border-left-width: 4px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    overflow-wrap: break-word;
+}
+
+div.admonition p.admonition-title {
+    margin: -1rem -1rem 1rem -1rem;
+    padding: 0.75rem 1rem;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    font-weight: bold;
+    color: white;
+    font-size: 1.1em;
+}
+
+/* Concept Box - Blue */
+div.admonition.admonition-concept {
+    background-color: #EBF5FF;
+    border-color: #3498DB;
+}
+div.admonition.admonition-concept p.admonition-title {
+    background-color: #3498DB;
+}
+div.admonition.admonition-concept p.admonition-title::before { content: "🟦 "; }
+
+/* Example Box - Orange */
+div.admonition.admonition-example {
+    background-color: #FEF9E7;
+    border-color: #F39C12;
+}
+div.admonition.admonition-example p.admonition-title {
+    background-color: #F39C12;
+}
+div.admonition.admonition-example p.admonition-title::before { content: "🟧 "; }
+
+/* Note Box - Green */
+div.admonition.note {
+    background-color: #E8F8F5;
+    border-color: #1ABC9C;
+}
+div.admonition.note p.admonition-title {
+    background-color: #1ABC9C;
+}
+div.admonition.note p.admonition-title::before { content: "🟩 "; }
+
+/* Warning Box - Yellow */
+div.admonition.warning {
+    background-color: #FFF9C4;
+    border-color: #F1C40F;
+}
+div.admonition.warning p.admonition-title {
+    background-color: #F1C40F;
+    color: #333;
+}
+div.admonition.warning p.admonition-title::before { content: "🟨 "; }
+
+/* Exercise Box - Grey with Collapsible Styling */
+div.admonition.admonition-exercise {
+    background-color: #F8F9FA;
+    border-color: #6C757D;
+    position: relative;
+}
+div.admonition.admonition-exercise p.admonition-title {
+    background-color: #6C757D;
+    cursor: pointer;
+    position: relative;
+}
+div.admonition.admonition-exercise p.admonition-title::before { content: "📝 "; }
+div.admonition.admonition-exercise p.admonition-title::after {
+    content: " [Click to expand]";
+    font-size: 0.85em;
+    opacity: 0.8;
+}
+
+/* Solution Box - Green with Collapsible Styling */
+div.admonition.admonition-solution {
+    background-color: #E9F7EF;
+    border-color: #27AE60;
+    position: relative;
+}
+div.admonition.admonition-solution p.admonition-title {
+    background-color: #27AE60;
+    cursor: pointer;
+    position: relative;
+}
+div.admonition.admonition-solution p.admonition-title::before { content: "💡 "; }
+div.admonition.admonition-solution p.admonition-title::after {
+    content: " [Click to reveal]";
+    font-size: 0.85em;
+    opacity: 0.8;
+}
+
+/* =================================================================
+   ENHANCED MCQ WITH DROPDOWN FUNCTIONALITY
+   ================================================================= */
+
+.mcq-container {
+    background-color: #fdfdfd;
+    border: 2px solid #e1e4e8;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+}
+
+.mcq-question {
+    font-size: 1.2em;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    line-height: 1.4;
+    color: #2c3e50;
+}
+
+.mcq-option {
+    margin-bottom: 1rem;
+}
+
+.mcq-option label {
+    display: block;
+    padding: 1rem 1.25rem;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid #dee2e6;
+    font-size: 1em;
+    line-height: 1.5;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+}
+
+.mcq-option label:hover {
+    background-color: #e9ecef;
+    border-color: #adb5bd;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.mcq-option label:active {
+    transform: translateY(0);
+}
+
+/* Hide radio buttons */
+.mcq-option input[type="radio"] {
+    display: none;
+}
+
+/* Feedback styling */
+.mcq-feedback {
+    display: none;
+    padding: 1.25rem;
+    margin-top: 1rem;
+    border-radius: 8px;
+    font-size: 1em;
+    line-height: 1.6;
+    border: 2px solid;
+}
+
+.mcq-option input[type="radio"]:checked + label + .mcq-feedback {
+    display: block;
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Correct feedback - Green */
+.mcq-feedback.correct {
+    background-color: #d4edda;
+    border-color: #27ae60;
+    color: #155724;
+}
+
+.mcq-feedback.correct::before {
+    content: "✅ ";
+    font-size: 1.2em;
+}
+
+/* Incorrect feedback - Red */
+.mcq-feedback.incorrect {
+    background-color: #f8d7da;
+    border-color: #e74c3c;
+    color: #721c24;
+}
+
+.mcq-feedback.incorrect::before {
+    content: "❌ ";
+    font-size: 1.2em;
+}
+
+/* =================================================================
+   COLLAPSIBLE EXERCISES AND SOLUTIONS
+   ================================================================= */
+
+/* Exercise Question - Collapsible */
+.exercise-collapsible {
+    margin-bottom: 2rem;
+}
+
+.exercise-collapsible .collapsible-header {
+    background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+    border-left: 4px solid #343a40;
+}
+
+.exercise-collapsible .collapsible-header::before {
+    content: "📝 ";
+    margin-right: 0.5rem;
+}
+
+/* Solution - Collapsible */
+.solution-collapsible {
+    margin-bottom: 2rem;
+}
+
+.solution-collapsible .collapsible-header {
+    background: linear-gradient(135deg, #27ae60 0%, #1e8449 100%);
+    border-left: 4px solid #196f3d;
+}
+
+.solution-collapsible .collapsible-header::before {
+    content: "💡 ";
+    margin-right: 0.5rem;
+}
+
+.solution-collapsible .collapsible-content {
+    background-color: #e9f7ef;
+    border-color: #27ae60;
+}
+
+/* =================================================================
+   MOBILE-SPECIFIC IMPROVEMENTS
+   ================================================================= */
+
+/* Touch-friendly buttons and links */
+@media screen and (max-width: 767px) {
+    .mcq-option label {
+        padding: 1.25rem;
+        min-height: 70px;
+        font-size: 1.1em;
+    }
+    
+    .mcq-question {
+        font-size: 1.3em;
+    }
+    
+    div.admonition {
+        margin-left: 0;
+        margin-right: 0;
+    }
+    
+    .collapsible-header {
+        padding: 1.25rem;
+        font-size: 1.2em;
+    }
+    
+    .collapsible-content {
+        font-size: 1.05em;
+    }
+    
+    /* Better math rendering on mobile */
+    .MathJax {
+        font-size: 1.1em !important;
+    }
+    
+    /* Tables responsive */
+    table {
+        font-size: 0.9em;
+        overflow-x: auto;
+        display: block;
+        white-space: nowrap;
+    }
+}
+
+/* =================================================================
+   ENHANCED VISUAL ELEMENTS
+   ================================================================= */
+
+/* Better list styling */
+ul, ol {
+    padding-left: 1.5rem;
+}
+
+li {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+}
+
+/* Improved code blocks */
+code {
+    background-color: #f1f3f4;
+    padding: 0.2em 0.4em;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+/* Enhanced table styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+}
+
+th, td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6;
+}
+
+th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+}
+
+/* =================================================================
+   JAVASCRIPT-FREE COLLAPSIBLE IMPLEMENTATION
+   ================================================================= */
+
+/* Pure CSS toggle for exercises */
+.toggle-exercise {
+    display: none;
+}
+
+.toggle-exercise + .exercise-header {
+    cursor: pointer;
+    padding: 1rem 1.5rem;
+    background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+    color: white;
+    border-radius: 8px 8px 0 0;
+    position: relative;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    border-left: 4px solid #343a40;
+}
+
+.toggle-exercise + .exercise-header::after {
+    content: "▼ Show Exercise";
+    float: right;
+    transition: transform 0.3s ease;
+}
+
+.toggle-exercise:checked + .exercise-header::after {
+    content: "▲ Hide Exercise";
+}
+
+.toggle-exercise + .exercise-header + .exercise-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+    background-color: #f8f9fa;
+    border: 2px solid #6c757d;
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+}
+
+.toggle-exercise:checked + .exercise-header + .exercise-content {
+    max-height: 2000px;
+    padding: 1.5rem;
+}
+
+/* Pure CSS toggle for solutions */
+.toggle-solution {
+    display: none;
+}
+
+.toggle-solution + .solution-header {
+    cursor: pointer;
+    padding: 1rem 1.5rem;
+    background: linear-gradient(135deg, #27ae60 0%, #1e8449 100%);
+    color: white;
+    border-radius: 8px 8px 0 0;
+    position: relative;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    border-left: 4px solid #196f3d;
+}
+
+.toggle-solution + .solution-header::after {
+    content: "▼ Show Solution";
+    float: right;
+    transition: transform 0.3s ease;
+}
+
+.toggle-solution:checked + .solution-header::after {
+    content: "▲ Hide Solution";
+}
+
+.toggle-solution + .solution-header + .solution-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+    background-color: #e9f7ef;
+    border: 2px solid #27ae60;
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+}
+
+.toggle-solution:checked + .solution-header + .solution-content {
+    max-height: 2000px;
+    padding: 1.5rem;
+}

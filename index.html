@@ -1,0 +1,336 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A Learner’s Guide to Regular Expressions &mdash; Regular Expressions in TOC</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=a602fc3a" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script>let toggleHintShow = 'Click to show';</script>
+      <script>let toggleHintHide = 'Click to hide';</script>
+      <script>let toggleOpenOnPrint = 'true';</script>
+      <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+      <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="#" class="icon icon-home">
+            A Learner's Guide to Regular Expressions
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">A Learner’s Guide to Regular Expressions</a><ul>
+<li><a class="reference internal" href="#the-core-concepts">1. The Core Concepts</a></li>
+<li><a class="reference internal" href="#worked-examples">2. Worked Examples</a></li>
+<li><a class="reference internal" href="#interactive-exercises">. Interactive Exercises</a></li>
+<li><a class="reference internal" href="#summary-key-takeaways">5. Summary &amp; Key Takeaways</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">A Learner's Guide to Regular Expressions</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">A Learner’s Guide to Regular Expressions</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="a-learner-s-guide-to-regular-expressions">
+<h1>A Learner’s Guide to Regular Expressions<a class="headerlink" href="#a-learner-s-guide-to-regular-expressions" title="Link to this heading"></a></h1>
+<p>WWelcome to the world of Regular Expressions (RE) in the Theory of Computation (TOC)! This guide is designed to be your friendly handbook, breaking down complex ideas into simple, understandable pieces.</p>
+<br><div class="admonition-concept admonition">
+<p class="admonition-title">Concept</p>
+<p><strong>What is a Regular Expression?</strong></p>
+<p>A Regular Expression is a sequence of characters that specifies a search pattern. In TOC, it’s a formal way to describe a <strong>Regular Language</strong>—a set of strings that can be recognized by a Finite Automaton. Think of it as an algebraic formula for defining patterns in text.</p>
+</div>
+<section id="the-core-concepts">
+<h2>1. The Core Concepts<a class="headerlink" href="#the-core-concepts" title="Link to this heading"></a></h2>
+<p>Before we build complex expressions, let’s understand the building blocks.</p>
+<dl class="simple">
+<dt>Alphabet (<span class="math notranslate nohighlight">\(\Sigma\)</span>)</dt><dd><p>A finite, non-empty set of symbols. For example, <span class="math notranslate nohighlight">\(\Sigma = \{a, b\}\)</span> or <span class="math notranslate nohighlight">\(\Sigma = \{0, 1\}\)</span>.</p>
+</dd>
+<dt>Empty String (<span class="math notranslate nohighlight">\(\epsilon\)</span>)</dt><dd><p>A string with zero characters. It’s a valid string in many languages.</p>
+</dd>
+<dt>Empty Set (<span class="math notranslate nohighlight">\(\emptyset\)</span>)</dt><dd><p>Represents a language with no strings at all. It is different from the language containing only the empty string, <span class="math notranslate nohighlight">\(\{\epsilon\}\)</span>.</p>
+</dd>
+<dt>Operators</dt><dd><p>Regular Expressions use three primary operators to combine symbols:</p>
+<ol class="arabic simple">
+<li><p><strong>Union (+)</strong>: Represents an “OR” condition. <span class="math notranslate nohighlight">\(a+b\)</span> means either ‘a’ or ‘b’.</p></li>
+<li><p><strong>Concatenation (.)</strong>: Joins characters or expressions sequentially. <span class="math notranslate nohighlight">\(a \cdot b\)</span> (or simply <span class="math notranslate nohighlight">\(ab\)</span>) means ‘a’ followed by ‘b’.</p></li>
+<li><p><strong>Kleene Star (*)</strong>: Represents “zero or more” occurrences of the preceding character or group. <span class="math notranslate nohighlight">\(a^*\)</span> means <span class="math notranslate nohighlight">\(\{\epsilon, a, aa, aaa, ...\}\)</span>.</p></li>
+</ol>
+</dd>
+</dl>
+<div class="warning admonition">
+<p class="admonition-title">Warning</p>
+<p>Don’t confuse the empty string <span class="math notranslate nohighlight">\(\epsilon\)</span> with the empty set <span class="math notranslate nohighlight">\(\emptyset\)</span>. <span class="math notranslate nohighlight">\(\epsilon\)</span> is a string, whereas <span class="math notranslate nohighlight">\(\emptyset\)</span> represents a language with no strings.</p>
+</div>
+</section>
+<section id="worked-examples">
+<h2>2. Worked Examples<a class="headerlink" href="#worked-examples" title="Link to this heading"></a></h2>
+<p>Let’s see these concepts in action!</p>
+<div class="admonition-example admonition">
+<p class="admonition-title">Example 1: Language of strings ending with ‘ab’</p>
+<p><strong>Regular Expression:</strong> <span class="math notranslate nohighlight">\((a+b)^*ab\)</span></p>
+<p><strong>Intuitive Explanation:</strong>
+- <span class="math notranslate nohighlight">\((a+b)^*\)</span>: This part means “any combination of ‘a’s and ‘b’s, of any length (including zero).” This allows the string to start with anything.
+- <span class="math notranslate nohighlight">\(ab\)</span>: This part forces the string to end with the exact sequence ‘ab’.</p>
+<p><strong>Sample Strings:</strong> <span class="math notranslate nohighlight">\(ab\)</span>, <span class="math notranslate nohighlight">\(aab\)</span>, <span class="math notranslate nohighlight">\(bab\)</span>, <span class="math notranslate nohighlight">\(aaaaab\)</span>, <span class="math notranslate nohighlight">\(bbabab\)</span></p>
+<dl class="field-list simple">
+<dt class="field-odd">animate<span class="colon">:</span></dt>
+<dd class="field-odd"><p>fade-in</p>
+</dd>
+</dl>
+<p><strong>The correct answer is C</strong>, because (ab)* only allows complete repetitions of “ab”.</p>
+</div>
+<div class="admonition-example admonition">
+<p class="admonition-title">Example 2: Language accepting exactly ‘ab’</p>
+<p><strong>Regular Expression:</strong> <span class="math notranslate nohighlight">\(ab\)</span></p>
+<p><strong>Intuitive Explanation:</strong>
+- <span class="math notranslate nohighlight">\(a\)</span>: This part requires the string to start with exactly ‘a’.
+- <span class="math notranslate nohighlight">\(b\)</span>: This part requires ‘a’ to be followed immediately by ‘b’.</p>
+<p><strong>Sample Strings:</strong> <span class="math notranslate nohighlight">\(ab\)</span></p>
+<p><strong>Visual Diagram (NFA):</strong></p>
+<div class="figure" style="text-align: center"><p><img  src="_images/tikz-8d3f6014f92e111ea3914ecb2a2b74b823155c8e.png" alt="Figure made with TikZ" /></p>
+</div><p><em>Caption: This NFA accepts only the string ‘ab’. It moves from q0 to q1 on ‘a’, then from q1 to the accepting state q2 on ‘b’.</em></p>
+</div>
+<div class="admonition-example admonition">
+<p class="admonition-title">Example 3: Language of strings with repeated ‘ab’ pattern</p>
+<p><strong>Regular Expression:</strong> <span class="math notranslate nohighlight">\((ab)^*\)</span></p>
+<p><strong>Intuitive Explanation:</strong>
+- <span class="math notranslate nohighlight">\(ab\)</span>: This represents the basic unit pattern ‘ab’.
+- <span class="math notranslate nohighlight">\(()^*\)</span>: The Kleene star allows this pattern to repeat zero or more times.</p>
+<p><strong>Sample Strings:</strong> <span class="math notranslate nohighlight">\(\epsilon\)</span>, <span class="math notranslate nohighlight">\(ab\)</span>, <span class="math notranslate nohighlight">\(abab\)</span>, <span class="math notranslate nohighlight">\(ababab\)</span></p>
+<p><strong>Visual Diagram (NFA):</strong></p>
+<div class="figure" style="text-align: center"><p><img  src="_images/tikz-f97a7bf79ed8e39786f9092c9126a10243033edb.png" alt="Figure made with TikZ" /></p>
+</div><p><em>Caption: This NFA accepts strings formed by repeating ‘ab’ pattern. Starting from accepting state q0, it cycles through q1 and back to q0 for each ‘ab’ sequence.</em></p>
+</div>
+<div class="admonition-example admonition">
+<p class="admonition-title">Example 4: Language of strings ending with ‘b’</p>
+<p><strong>Regular Expression:</strong> <span class="math notranslate nohighlight">\((a+b)^*b\)</span></p>
+<p><strong>Intuitive Explanation:</strong>
+- <span class="math notranslate nohighlight">\((a+b)^*\)</span>: This part allows any combination of ‘a’s and ‘b’s at the beginning, including empty string.
+- <span class="math notranslate nohighlight">\(b\)</span>: This part ensures the string must end with ‘b’.</p>
+<p><strong>Sample Strings:</strong> <span class="math notranslate nohighlight">\(b\)</span>, <span class="math notranslate nohighlight">\(ab\)</span>, <span class="math notranslate nohighlight">\(bb\)</span>, <span class="math notranslate nohighlight">\(aab\)</span>, <span class="math notranslate nohighlight">\(abb\)</span></p>
+<p><strong>Visual Diagram (NFA):</strong></p>
+<div class="figure" style="text-align: center"><p><img  src="_images/tikz-b8d0c995d6827510e64c4a99f6aaa5b3ddcc40b0.png" alt="Figure made with TikZ" /></p>
+</div><p><em>Caption: This NFA accepts strings ending with ‘b’. State q0 handles ‘a’ and transitions to q1 on ‘b’. From q1, ‘a’ returns to q0, while ‘b’ stays in the accepting state.</em></p>
+</div>
+<div class="admonition-example admonition">
+<p class="admonition-title">Example 5: Language of strings starting with ‘a’</p>
+<p><strong>Regular Expression:</strong> <span class="math notranslate nohighlight">\(a(a+b)^*\)</span></p>
+<p><strong>Intuitive Explanation:</strong>
+- <span class="math notranslate nohighlight">\(a\)</span>: This part ensures the string must start with ‘a’.
+- <span class="math notranslate nohighlight">\((a+b)^*\)</span>: This part allows any combination of ‘a’s and ‘b’s to follow, including none.</p>
+<p><strong>Sample Strings:</strong> <span class="math notranslate nohighlight">\(a\)</span>, <span class="math notranslate nohighlight">\(aa\)</span>, <span class="math notranslate nohighlight">\(ab\)</span>, <span class="math notranslate nohighlight">\(aab\)</span>, <span class="math notranslate nohighlight">\(aba\)</span></p>
+<p><strong>Visual Diagram (NFA):</strong></p>
+<div class="figure" style="text-align: center"><p><img  src="_images/tikz-985a8b944c3673afdf9ddf76b45e92846acfe478.png" alt="Figure made with TikZ" /></p>
+</div><p><em>Caption: This NFA accepts strings starting with ‘a’. After the mandatory ‘a’ transition to accepting state q1, any combination of characters is allowed.</em></p>
+</div>
+<div class="admonition-example admonition">
+<p class="admonition-title">Example 6: Language following pattern ‘ab*a’</p>
+<p><strong>Regular Expression:</strong> <span class="math notranslate nohighlight">\(ab^*a\)</span></p>
+<p><strong>Intuitive Explanation:</strong>
+- <span class="math notranslate nohighlight">\(a\)</span>: This part requires the string to start with ‘a’.
+- <span class="math notranslate nohighlight">\(b^*\)</span>: This part allows zero or more ‘b’s in the middle.
+- <span class="math notranslate nohighlight">\(a\)</span>: This part requires the string to end with ‘a’.</p>
+<p><strong>Sample Strings:</strong> <span class="math notranslate nohighlight">\(aa\)</span>, <span class="math notranslate nohighlight">\(aba\)</span>, <span class="math notranslate nohighlight">\(abba\)</span>, <span class="math notranslate nohighlight">\(abbba\)</span></p>
+<p><strong>Visual Diagram (NFA):</strong></p>
+<div class="figure" style="text-align: center"><p><img  src="_images/tikz-865971939622a3aa10ad274e4f3162542e1f4e6d.png" alt="Figure made with TikZ" /></p>
+</div><p><em>Caption: This NFA starts with ‘a’ to reach q1, allows any number of ‘b’s to loop in q1, then requires ‘a’ to reach the final accepting state q2.</em></p>
+</div>
+<div class="admonition-example admonition">
+<p class="admonition-title">Example 7: Language of single character ‘a’ or ‘b’</p>
+<p><strong>Regular Expression:</strong> <span class="math notranslate nohighlight">\(a+b\)</span></p>
+<p><strong>Intuitive Explanation:</strong>
+- <span class="math notranslate nohighlight">\(a\)</span>: This part represents strings containing just ‘a’.
+- <span class="math notranslate nohighlight">\(+\)</span>: The union operator represents “OR” logic.
+- <span class="math notranslate nohighlight">\(b\)</span>: This part represents strings containing just ‘b’.</p>
+<p><strong>Sample Strings:</strong> <span class="math notranslate nohighlight">\(a\)</span>, <span class="math notranslate nohighlight">\(b\)</span></p>
+<p><strong>Visual Diagram (NFA):</strong></p>
+<div class="figure" style="text-align: center"><p><img  src="_images/tikz-aecb9215940714d3bb4d3d470c8434c4bb2a838d.png" alt="Figure made with TikZ" /></p>
+</div><p><em>Caption: This NFA provides a choice between ‘a’ and ‘b’. From initial state q0, either transition leads to an accepting state.</em></p>
+</div>
+<div class="admonition-example admonition">
+<p class="admonition-title">Example 8: Language containing at least one ‘a’</p>
+<p><strong>Regular Expression:</strong> <span class="math notranslate nohighlight">\((a+b)^*a(a+b)^*\)</span></p>
+<p><strong>Intuitive Explanation:</strong>
+- <span class="math notranslate nohighlight">\((a+b)^*\)</span>: This part allows any characters before the required ‘a’.
+- <span class="math notranslate nohighlight">\(a\)</span>: This part ensures at least one ‘a’ appears in the string.
+- <span class="math notranslate nohighlight">\((a+b)^*\)</span>: This part allows any characters after the required ‘a’.</p>
+<p><strong>Sample Strings:</strong> <span class="math notranslate nohighlight">\(a\)</span>, <span class="math notranslate nohighlight">\(ab\)</span>, <span class="math notranslate nohighlight">\(ba\)</span>, <span class="math notranslate nohighlight">\(aab\)</span>, <span class="math notranslate nohighlight">\(bba\)</span></p>
+<p><strong>Visual Diagram (NFA):</strong></p>
+<div class="figure" style="text-align: center"><p><img  src="_images/tikz-4220d036301342d056dd499dba4f6a955be7a4cd.png" alt="Figure made with TikZ" /></p>
+</div><p><em>Caption: This NFA stays in q0 with ‘b’s until encountering ‘a’, which moves to accepting state q1. Once in q1, any characters keep it accepting.</em></p>
+</div>
+<div class="admonition-example admonition">
+<p class="admonition-title">Example 9: Language of strings with even length</p>
+<p><strong>Regular Expression:</strong> <span class="math notranslate nohighlight">\(((a+b)(a+b))^*\)</span></p>
+<p><strong>Intuitive Explanation:</strong>
+- <span class="math notranslate nohighlight">\((a+b)\)</span>: This represents any single character from the alphabet.
+- <span class="math notranslate nohighlight">\((a+b)(a+b)\)</span>: This represents exactly two characters (a pair).
+- <span class="math notranslate nohighlight">\(()^*\)</span>: This allows any number of such pairs, ensuring even total length.</p>
+<p><strong>Sample Strings:</strong> <span class="math notranslate nohighlight">\(\epsilon\)</span>, <span class="math notranslate nohighlight">\(aa\)</span>, <span class="math notranslate nohighlight">\(ab\)</span>, <span class="math notranslate nohighlight">\(ba\)</span>, <span class="math notranslate nohighlight">\(bb\)</span>, <span class="math notranslate nohighlight">\(abab\)</span></p>
+<p><strong>Visual Diagram (NFA):</strong></p>
+<div class="figure" style="text-align: center"><p><img  src="_images/tikz-5cf5a7e1df69355107dcdcf6371f2b0ed4572061.png" alt="Figure made with TikZ" /></p>
+</div><p><em>Caption: This NFA alternates between q0 (even position) and q1 (odd position). Only q0 is accepting, ensuring even-length strings are accepted.</em></p>
+</div>
+<div class="admonition-example admonition">
+<p class="admonition-title">Example 10: Language containing ‘ab’ as substring</p>
+<p><strong>Regular Expression:</strong> <span class="math notranslate nohighlight">\((a+b)^*ab(a+b)^*\)</span></p>
+<p><strong>Intuitive Explanation:</strong>
+- <span class="math notranslate nohighlight">\((a+b)^*\)</span>: This part allows any characters before the required substring ‘ab’.
+- <span class="math notranslate nohighlight">\(ab\)</span>: This part ensures the substring ‘ab’ appears somewhere in the string.
+- <span class="math notranslate nohighlight">\((a+b)^*\)</span>: This part allows any characters after the required substring.</p>
+<p><strong>Sample Strings:</strong> <span class="math notranslate nohighlight">\(ab\)</span>, <span class="math notranslate nohighlight">\(aab\)</span>, <span class="math notranslate nohighlight">\(abb\)</span>, <span class="math notranslate nohighlight">\(bab\)</span>, <span class="math notranslate nohighlight">\(abab\)</span></p>
+<p><strong>Visual Diagram (NFA):</strong></p>
+<div class="figure" style="text-align: center"><p><img  src="_images/tikz-3397b15733f905a86fb0430d2bcd7beed1e469bd.png" alt="Figure made with TikZ" /></p>
+</div><p><em>Caption: This NFA searches for ‘ab’ pattern. It stays in q0 with ‘b’, moves to q1 on ‘a’, then to accepting q2 on ‘b’. Once ‘ab’ is found, it remains accepting.</em></p>
+</div>
+</section>
+<section id="interactive-exercises">
+<h2>. Interactive Exercises<a class="headerlink" href="#interactive-exercises" title="Link to this heading"></a></h2>
+<p>Time to test your knowledge! Try to solve these on your own before peeking at the solution.</p>
+<input type="checkbox" id="toggle-ex1" class="toggle-exercise">
+<label for="toggle-ex1" class="exercise-header">📝 Exercise 1 (Basic): Language starting with 'a' and ending with 'b'</label>
+<div class="exercise-content">
+    <p><strong>Question:</strong> Write a Regular Expression for the language of all strings over Σ = {a, b} that start with 'a' and end with 'b'.</p>
+    <p><strong>Hint:</strong> Think about what can come in between the first 'a' and the last 'b'. It can be anything!</p>
+</div><input type="checkbox" id="toggle-sol1" class="toggle-solution">
+<label for="toggle-sol1" class="solution-header">💡 Solution</label>
+<div class="solution-content">
+    <p><strong>Regular Expression:</strong> a(a+b)*b</p>
+    <p><strong>Explanation:</strong></p>
+    <ul>
+        <li>The first <strong>a</strong> ensures the string starts with 'a'.</li>
+        <li>The middle <strong>(a+b)*</strong> allows for any sequence of 'a's and 'b's (including none).</li>
+        <li>The final <strong>b</strong> ensures the string ends with 'b'.</li>
+        <li><strong>Sample Strings</strong>: ab, aab, abb, ababab</li>
+    </ul>
+</div></section>
+<section id="summary-key-takeaways">
+<h2>5. Summary &amp; Key Takeaways<a class="headerlink" href="#summary-key-takeaways" title="Link to this heading"></a></h2>
+<p>Here’s a quick recap of the operators:</p>
+<table class="docutils align-default" id="id1">
+<caption><span class="caption-text">Regular Expression Operators</span><a class="headerlink" href="#id1" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 15.0%" />
+<col style="width: 15.0%" />
+<col style="width: 40.0%" />
+<col style="width: 30.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Operator</strong></p></th>
+<th class="head"><p><strong>Symbol</strong></p></th>
+<th class="head"><p><strong>Meaning</strong></p></th>
+<th class="head"><p><strong>Example</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Union</p></td>
+<td><p><span class="math notranslate nohighlight">\(+\)</span></p></td>
+<td><p>OR logic (matches one of the options)</p></td>
+<td><p><span class="math notranslate nohighlight">\(a+b\)</span> (matches ‘a’ or ‘b’)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Concatenation</p></td>
+<td><p><span class="math notranslate nohighlight">\(\cdot\)</span> (often omitted)</p></td>
+<td><p>AND THEN logic (matches in sequence)</p></td>
+<td><p><span class="math notranslate nohighlight">\(ab\)</span> (matches ‘a’ followed by ‘b’)</p></td>
+</tr>
+<tr class="row-even"><td><p>Kleene Star</p></td>
+<td><p><span class="math notranslate nohighlight">\(*\)</span></p></td>
+<td><p>Zero or more occurrences</p></td>
+<td><p><span class="math notranslate nohighlight">\(a^*\)</span> (matches <span class="math notranslate nohighlight">\(\epsilon\)</span>, ‘a’, ‘aa’, …)</p></td>
+</tr>
+</tbody>
+</table>
+<div class="note admonition">
+<p class="admonition-title">Note</p>
+<p>🚀 Next Steps</p>
+<p>Great job! You now understand the fundamentals of Regular Expressions. The next logical step is to explore the powerful connection between REs and Finite Automata (FA). You’ll learn how to:</p>
+<ol class="arabic simple">
+<li><p>Convert any Regular Expression into an NFA.</p></li>
+<li><p>Convert any DFA into a Regular Expression.</p></li>
+</ol>
+<p>This equivalence is a cornerstone of the Theory of Computation!</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Ashwini.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,376 @@
+#########################################
+A Learner's Guide to Regular Expressions
+#########################################
+
+WWelcome to the world of Regular Expressions (RE) in the Theory of Computation (TOC)! This guide is designed to be your friendly handbook, breaking down complex ideas into simple, understandable pieces.
+
+.. raw:: html
+
+   <br>
+
+.. admonition:: Concept
+   :class: admonition-concept
+
+   **What is a Regular Expression?**
+
+   A Regular Expression is a sequence of characters that specifies a search pattern. In TOC, it's a formal way to describe a **Regular Language**—a set of strings that can be recognized by a Finite Automaton. Think of it as an algebraic formula for defining patterns in text.
+
+**********************
+1. The Core Concepts
+**********************
+
+Before we build complex expressions, let's understand the building blocks.
+
+Alphabet (:math:`\Sigma`)
+   A finite, non-empty set of symbols. For example, :math:`\Sigma = \{a, b\}` or :math:`\Sigma = \{0, 1\}`.
+
+Empty String (:math:`\epsilon`)
+   A string with zero characters. It's a valid string in many languages.
+
+Empty Set (:math:`\emptyset`)
+   Represents a language with no strings at all. It is different from the language containing only the empty string, :math:`\{\epsilon\}`.
+
+Operators
+   Regular Expressions use three primary operators to combine symbols:
+
+   1.  **Union (+)**: Represents an "OR" condition. :math:`a+b` means either 'a' or 'b'.
+   2.  **Concatenation (.)**: Joins characters or expressions sequentially. :math:`a \cdot b` (or simply :math:`ab`) means 'a' followed by 'b'.
+   3.  **Kleene Star (*)**: Represents "zero or more" occurrences of the preceding character or group. :math:`a^*` means :math:`\{\epsilon, a, aa, aaa, ...\}`.
+
+.. warning::
+   :class: warning
+
+   Don't confuse the empty string :math:`\epsilon` with the empty set :math:`\emptyset`. :math:`\epsilon` is a string, whereas :math:`\emptyset` represents a language with no strings.
+
+********************
+2. Worked Examples
+********************
+
+Let's see these concepts in action!
+
+.. admonition:: Example 1: Language of strings ending with 'ab'
+   :class: admonition-example
+
+   **Regular Expression:** :math:`(a+b)^*ab`
+
+   **Intuitive Explanation:**
+   - :math:`(a+b)^*`: This part means "any combination of 'a's and 'b's, of any length (including zero)." This allows the string to start with anything.
+   - :math:`ab`: This part forces the string to end with the exact sequence 'ab'.
+
+   **Sample Strings:** :math:`ab`, :math:`aab`, :math:`bab`, :math:`aaaaab`, :math:`bbabab`
+
+   .. dropdown:: **Show Answer**
+   :animate: fade-in
+
+   **The correct answer is C**, because (ab)* only allows complete repetitions of "ab".
+
+   .. dropdown:: 🔍 View NFA Diagram & Explanation
+      :class-container: solution-dropdown
+      :color: primary
+
+      **Visual Diagram (NFA):**
+
+      .. tikz::
+         [shorten >=1pt, node distance=2.5cm, on grid, auto]
+         \node[state, initial] (q0) {$q_0$};
+         \node[state] (q1) [right=of q0] {$q_1$};
+         \node[state, accepting, fill=finalstatecolor!20] (q2) [right=of q1] {$q_2$};
+         \path[->]
+           (q0) edge [loop above] node {a, b} ()
+           (q0) edge node {a} (q1)
+           (q1) edge node {b} (q2);
+      
+      **Caption:** This NFA accepts any string that ends in 'ab'. It stays in q0 for any character, moves to q1 on 'a', and finally to the accepting state q2 on 'b'.
+
+
+
+.. admonition:: Example 2: Language accepting exactly 'ab'
+   :class: admonition-example
+
+   **Regular Expression:** :math:`ab`
+
+   **Intuitive Explanation:**
+   - :math:`a`: This part requires the string to start with exactly 'a'.
+   - :math:`b`: This part requires 'a' to be followed immediately by 'b'.
+
+   **Sample Strings:** :math:`ab`
+
+   **Visual Diagram (NFA):**
+
+   .. tikz::
+      [shorten >=1pt, node distance=2.5cm, on grid, auto]
+      \node[state, initial] (q0) {$q_0$};
+      \node[state] (q1) [right=of q0] {$q_1$};
+      \node[state, accepting, fill=finalstatecolor!20] (q2) [right=of q1] {$q_2$};
+      \path[->]
+        (q0) edge node {a} (q1)
+        (q1) edge node {b} (q2);
+   
+   *Caption: This NFA accepts only the string 'ab'. It moves from q0 to q1 on 'a', then from q1 to the accepting state q2 on 'b'.*
+
+.. admonition:: Example 3: Language of strings with repeated 'ab' pattern
+   :class: admonition-example
+
+   **Regular Expression:** :math:`(ab)^*`
+
+   **Intuitive Explanation:**
+   - :math:`ab`: This represents the basic unit pattern 'ab'.
+   - :math:`()^*`: The Kleene star allows this pattern to repeat zero or more times.
+
+   **Sample Strings:** :math:`\epsilon`, :math:`ab`, :math:`abab`, :math:`ababab`
+
+   **Visual Diagram (NFA):**
+
+   .. tikz::
+      [shorten >=1pt, node distance=2.5cm, on grid, auto]
+      \node[state, initial, accepting, fill=finalstatecolor!20] (q0) {$q_0$};
+      \node[state] (q1) [right=of q0] {$q_1$};
+      \path[->]
+        (q0) edge [bend left] node {a} (q1)
+        (q1) edge [bend left] node {b} (q0);
+   
+   *Caption: This NFA accepts strings formed by repeating 'ab' pattern. Starting from accepting state q0, it cycles through q1 and back to q0 for each 'ab' sequence.*
+
+.. admonition:: Example 4: Language of strings ending with 'b'
+   :class: admonition-example
+
+   **Regular Expression:** :math:`(a+b)^*b`
+
+   **Intuitive Explanation:**
+   - :math:`(a+b)^*`: This part allows any combination of 'a's and 'b's at the beginning, including empty string.
+   - :math:`b`: This part ensures the string must end with 'b'.
+
+   **Sample Strings:** :math:`b`, :math:`ab`, :math:`bb`, :math:`aab`, :math:`abb`
+
+   **Visual Diagram (NFA):**
+
+   .. tikz::
+      [shorten >=1pt, node distance=2.5cm, on grid, auto]
+      \node[state, initial] (q0) {$q_0$};
+      \node[state, accepting, fill=finalstatecolor!20] (q1) [right=of q0] {$q_1$};
+      \path[->]
+        (q0) edge [loop above] node {a} ()
+        (q0) edge [bend left] node {b} (q1)
+        (q1) edge [bend left] node {a} (q0)
+        (q1) edge [loop above] node {b} ();
+   
+   *Caption: This NFA accepts strings ending with 'b'. State q0 handles 'a' and transitions to q1 on 'b'. From q1, 'a' returns to q0, while 'b' stays in the accepting state.*
+
+.. admonition:: Example 5: Language of strings starting with 'a'
+   :class: admonition-example
+
+   **Regular Expression:** :math:`a(a+b)^*`
+
+   **Intuitive Explanation:**
+   - :math:`a`: This part ensures the string must start with 'a'.
+   - :math:`(a+b)^*`: This part allows any combination of 'a's and 'b's to follow, including none.
+
+   **Sample Strings:** :math:`a`, :math:`aa`, :math:`ab`, :math:`aab`, :math:`aba`
+
+   **Visual Diagram (NFA):**
+
+   .. tikz::
+      [shorten >=1pt, node distance=2.5cm, on grid, auto]
+      \node[state, initial] (q0) {$q_0$};
+      \node[state, accepting, fill=finalstatecolor!20] (q1) [right=of q0] {$q_1$};
+      \path[->]
+        (q0) edge node {a} (q1)
+        (q1) edge [loop above] node {a,b} ();
+   
+   *Caption: This NFA accepts strings starting with 'a'. After the mandatory 'a' transition to accepting state q1, any combination of characters is allowed.*
+
+.. admonition:: Example 6: Language following pattern 'ab*a'
+   :class: admonition-example
+
+   **Regular Expression:** :math:`ab^*a`
+
+   **Intuitive Explanation:**
+   - :math:`a`: This part requires the string to start with 'a'.
+   - :math:`b^*`: This part allows zero or more 'b's in the middle.
+   - :math:`a`: This part requires the string to end with 'a'.
+
+   **Sample Strings:** :math:`aa`, :math:`aba`, :math:`abba`, :math:`abbba`
+
+   **Visual Diagram (NFA):**
+
+   .. tikz::
+      [shorten >=1pt, node distance=2.5cm, on grid, auto]
+      \node[state, initial] (q0) {$q_0$};
+      \node[state] (q1) [right=of q0] {$q_1$};
+      \node[state, accepting, fill=finalstatecolor!20] (q2) [right=of q1] {$q_2$};
+      \path[->]
+        (q0) edge node {a} (q1)
+        (q1) edge [loop above] node {b} ()
+        (q1) edge node {a} (q2);
+   
+   *Caption: This NFA starts with 'a' to reach q1, allows any number of 'b's to loop in q1, then requires 'a' to reach the final accepting state q2.*
+
+.. admonition:: Example 7: Language of single character 'a' or 'b'
+   :class: admonition-example
+
+   **Regular Expression:** :math:`a+b`
+
+   **Intuitive Explanation:**
+   - :math:`a`: This part represents strings containing just 'a'.
+   - :math:`+`: The union operator represents "OR" logic.
+   - :math:`b`: This part represents strings containing just 'b'.
+
+   **Sample Strings:** :math:`a`, :math:`b`
+
+   **Visual Diagram (NFA):**
+
+   .. tikz::
+      [shorten >=1pt, node distance=2.5cm, on grid, auto]
+      \node[state, initial] (q0) {$q_0$};
+      \node[state, accepting, fill=finalstatecolor!20] (q1) [above right=of q0] {$q_1$};
+      \node[state, accepting, fill=finalstatecolor!20] (q2) [below right=of q0] {$q_2$};
+      \path[->]
+        (q0) edge node {a} (q1)
+        (q0) edge node {b} (q2);
+   
+   *Caption: This NFA provides a choice between 'a' and 'b'. From initial state q0, either transition leads to an accepting state.*
+
+.. admonition:: Example 8: Language containing at least one 'a'
+   :class: admonition-example
+
+   **Regular Expression:** :math:`(a+b)^*a(a+b)^*`
+
+   **Intuitive Explanation:**
+   - :math:`(a+b)^*`: This part allows any characters before the required 'a'.
+   - :math:`a`: This part ensures at least one 'a' appears in the string.
+   - :math:`(a+b)^*`: This part allows any characters after the required 'a'.
+
+   **Sample Strings:** :math:`a`, :math:`ab`, :math:`ba`, :math:`aab`, :math:`bba`
+
+   **Visual Diagram (NFA):**
+
+   .. tikz::
+      [shorten >=1pt, node distance=2.5cm, on grid, auto]
+      \node[state, initial] (q0) {$q_0$};
+      \node[state, accepting, fill=finalstatecolor!20] (q1) [right=of q0] {$q_1$};
+      \path[->]
+        (q0) edge [loop above] node {b} ()
+        (q0) edge node {a} (q1)
+        (q1) edge [loop above] node {a,b} ();
+   
+   *Caption: This NFA stays in q0 with 'b's until encountering 'a', which moves to accepting state q1. Once in q1, any characters keep it accepting.*
+
+.. admonition:: Example 9: Language of strings with even length
+   :class: admonition-example
+
+   **Regular Expression:** :math:`((a+b)(a+b))^*`
+
+   **Intuitive Explanation:**
+   - :math:`(a+b)`: This represents any single character from the alphabet.
+   - :math:`(a+b)(a+b)`: This represents exactly two characters (a pair).
+   - :math:`()^*`: This allows any number of such pairs, ensuring even total length.
+
+   **Sample Strings:** :math:`\epsilon`, :math:`aa`, :math:`ab`, :math:`ba`, :math:`bb`, :math:`abab`
+
+   **Visual Diagram (NFA):**
+
+   .. tikz::
+      [shorten >=1pt, node distance=2.5cm, on grid, auto]
+      \node[state, initial, accepting, fill=finalstatecolor!20] (q0) {$q_0$};
+      \node[state] (q1) [right=of q0] {$q_1$};
+      \path[->]
+        (q0) edge [bend left] node {a,b} (q1)
+        (q1) edge [bend left] node {a,b} (q0);
+   
+   *Caption: This NFA alternates between q0 (even position) and q1 (odd position). Only q0 is accepting, ensuring even-length strings are accepted.*
+
+.. admonition:: Example 10: Language containing 'ab' as substring
+   :class: admonition-example
+
+   **Regular Expression:** :math:`(a+b)^*ab(a+b)^*`
+
+   **Intuitive Explanation:**
+   - :math:`(a+b)^*`: This part allows any characters before the required substring 'ab'.
+   - :math:`ab`: This part ensures the substring 'ab' appears somewhere in the string.
+   - :math:`(a+b)^*`: This part allows any characters after the required substring.
+
+   **Sample Strings:** :math:`ab`, :math:`aab`, :math:`abb`, :math:`bab`, :math:`abab`
+
+   **Visual Diagram (NFA):**
+
+   .. tikz::
+      [shorten >=1pt, node distance=2.5cm, on grid, auto]
+      \node[state, initial] (q0) {$q_0$};
+      \node[state] (q1) [right=of q0] {$q_1$};
+      \node[state, accepting, fill=finalstatecolor!20] (q2) [right=of q1] {$q_2$};
+      \path[->]
+        (q0) edge [loop above] node {b} ()
+        (q0) edge node {a} (q1)
+        (q1) edge node {b} (q2)
+        (q2) edge [loop above] node {a,b} ();
+   
+   *Caption: This NFA searches for 'ab' pattern. It stays in q0 with 'b', moves to q1 on 'a', then to accepting q2 on 'b'. Once 'ab' is found, it remains accepting.*
+
+
+************************
+. Interactive Exercises
+************************
+
+Time to test your knowledge! Try to solve these on your own before peeking at the solution.
+
+.. raw:: html
+
+   <input type="checkbox" id="toggle-ex1" class="toggle-exercise">
+   <label for="toggle-ex1" class="exercise-header">📝 Exercise 1 (Basic): Language starting with 'a' and ending with 'b'</label>
+   <div class="exercise-content">
+       <p><strong>Question:</strong> Write a Regular Expression for the language of all strings over Σ = {a, b} that start with 'a' and end with 'b'.</p>
+       <p><strong>Hint:</strong> Think about what can come in between the first 'a' and the last 'b'. It can be anything!</p>
+   </div>
+
+.. raw:: html
+
+   <input type="checkbox" id="toggle-sol1" class="toggle-solution">
+   <label for="toggle-sol1" class="solution-header">💡 Solution</label>
+   <div class="solution-content">
+       <p><strong>Regular Expression:</strong> a(a+b)*b</p>
+       <p><strong>Explanation:</strong></p>
+       <ul>
+           <li>The first <strong>a</strong> ensures the string starts with 'a'.</li>
+           <li>The middle <strong>(a+b)*</strong> allows for any sequence of 'a's and 'b's (including none).</li>
+           <li>The final <strong>b</strong> ensures the string ends with 'b'.</li>
+           <li><strong>Sample Strings</strong>: ab, aab, abb, ababab</li>
+       </ul>
+   </div>
+
+
+***************************
+5. Summary & Key Takeaways
+***************************
+
+Here's a quick recap of the operators:
+
+.. list-table:: Regular Expression Operators
+   :header-rows: 1
+   :widths: 15 15 40 30
+
+   * - **Operator**
+     - **Symbol**
+     - **Meaning**
+     - **Example**
+   * - Union
+     - :math:`+`
+     - OR logic (matches one of the options)
+     - :math:`a+b` (matches 'a' or 'b')
+   * - Concatenation
+     - :math:`\cdot` (often omitted)
+     - AND THEN logic (matches in sequence)
+     - :math:`ab` (matches 'a' followed by 'b')
+   * - Kleene Star
+     - :math:`*`
+     - Zero or more occurrences
+     - :math:`a^*` (matches :math:`\epsilon`, 'a', 'aa', ...)
+
+.. note:: 🚀 Next Steps
+   :class: note
+
+   Great job! You now understand the fundamentals of Regular Expressions. The next logical step is to explore the powerful connection between REs and Finite Automata (FA). You'll learn how to:
+
+   1. Convert any Regular Expression into an NFA.
+   2. Convert any DFA into a Regular Expression.
+
+   This equivalence is a cornerstone of the Theory of Computation!
